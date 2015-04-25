@@ -9,3 +9,6 @@ user = User
 comment = Comment
 dateOfComment = Date of review
 rating = Rating
+productListTitle = Items
+toCart = to cart
+enter = login

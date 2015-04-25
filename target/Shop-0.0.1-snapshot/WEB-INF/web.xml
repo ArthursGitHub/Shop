@@ -12,6 +12,10 @@
             <param-value>characteristics</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>CardServlet</servlet-name>
+        <servlet-class>com.gi.shop.card.CardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Product</servlet-name>
         <url-pattern>/Product</url-pattern>
@@ -29,6 +33,23 @@
         <servlet-name>Products</servlet-name>
         <url-pattern>/Products</url-pattern>
         <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Card</servlet-name>
+        <jsp-file>/jsp/card/card.jsp</jsp-file>
+        <init-param>
+            <param-name>language</param-name>
+            <param-value>ru</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Card</servlet-name>
+        <url-pattern>/Card</url-pattern>
+        <url-pattern>/card</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CardServlet</servlet-name>
+        <url-pattern>/cardServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -9,3 +9,6 @@ user = Benutzer
 comment = Kommentar
 dateOfComment = Datum der Überprüfung
 rating = Wertung
+productListTitle = Artikel
+toCart = Zu Wagen
+enter = Anmelde

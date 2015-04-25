@@ -45,7 +45,7 @@ public class Product extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             String currentLanguage = getLanguage(request.getCookies());
             if (currentLanguage.isEmpty()) {
                 currentLanguage = getInitParameter("language");
@@ -86,9 +86,9 @@ public class Product extends HttpServlet {
                     break;
             }
             String id = request.getParameter("id");
-            if (id==null || id.isEmpty()){
+            if (id == null || id.isEmpty()) {
                 String contextPath = request.getContextPath();
-                response.sendRedirect(response.encodeRedirectURL(contextPath+"/products"));
+                response.sendRedirect(response.encodeRedirectURL(contextPath + "/products"));
                 return;
             }
             ProductBean product = new ProductBean();
@@ -117,6 +117,7 @@ public class Product extends HttpServlet {
             out.println("<title>" + product.getName() + "</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class=\"parent\">");
             out.println("<div class=\"header\">");
             out.println("<div class=\"nameOfShop\">");
             out.println(nameOfShop);
@@ -130,18 +131,18 @@ public class Product extends HttpServlet {
             out.println("<div class=\"content\">");
             out.println("<div class=\"productImages\">");
             out.println("<table><tr><td colspan=3 >");
-            out.println("<img class='productMainImage' src='/Shop/images/products/"+product.getBeanId()+"/big.JPG'");
+            out.println("<img class='productMainImage' src='/Shop/images/products/" + product.getBeanId() + "/big.JPG'");
             out.println("</a>");
             out.println("</td></tr>");
             out.println("<tr>");
             out.println("<td class=\"tdImage\">");
-            out.println("<img class='productSecondaryImage' src='/Shop/images/products/"+product.getBeanId()+"/big.JPG'");
+            out.println("<img class='productSecondaryImage' src='/Shop/images/products/" + product.getBeanId() + "/big.JPG'");
             out.println("</td>");
             out.println("<td class=\"tdImage\">");
-            out.println("<img class='productSecondaryImage' src='/Shop/images/products/"+product.getBeanId()+"/big2.JPG'");
+            out.println("<img class='productSecondaryImage' src='/Shop/images/products/" + product.getBeanId() + "/big2.JPG'");
             out.println("</td>");
             out.println("<td class=\"tdImage\">");
-            out.println("<img class='productSecondaryImage' src='/Shop/images/products/"+product.getBeanId()+"/big3.JPG'");
+            out.println("<img class='productSecondaryImage' src='/Shop/images/products/" + product.getBeanId() + "/big3.JPG'");
             out.println("</td>");
             out.println("</tr>");
             out.println("</table>");
@@ -224,6 +225,7 @@ public class Product extends HttpServlet {
             }
             out.println("</table>");
             out.println("    </section>");
+            out.println("</div>");
             out.println("</div>");
             out.println("</div>");
             out.println("</body>");

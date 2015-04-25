@@ -12,12 +12,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="/Shop/css/productList/productShort.css" type="text/css" rel="stylesheet">
+        <link href="/Shop/css/productList/productList.css" type="text/css" rel="stylesheet">
+        <script src="/Shop/javascript/productList/filter.js" type="text/javascript"></script>
+        <script src="/Shop/javascript/productList/buy.js" type="text/javascript"></script>
         <jsp:include page="/jsp/common.jsp"/>
-        <jsp:useBean id="productBean" class="com.gi.shop.beans.ProductBean" scope="session"/>
+        <jsp:useBean id="productBean" class="com.gi.shop.beans.ProductBean" scope="request"/>
         <jsp:useBean id="filterBean" class="com.gi.shop.beans.FilterBean" scope="session"/>
         <jsp:useBean id="propertiesBean" class="com.gi.shop.beans.PropertiesBean" scope="session"/>
+        <jsp:useBean id="cardBean" class="com.gi.shop.card.CardBean" scope="session"/>
         <%
             request.setCharacterEncoding("UTF-8");
+            request.getSession().setAttribute("cardBean", cardBean);
             String language = Language.getLanguage(request.getCookies());
             request.setAttribute("language", language);
             if (filterBean.getLanguage() == null || !filterBean.getLanguage().equals(language)) {
@@ -25,14 +32,10 @@
                 filterBean.setActiveFilter(new HashMap<String, Set<String>>());
                 filterBean.setCanChangeFilter(new HashMap<String, Set<String>>());
             }
-            ResourceBundle resources = propertiesBean.asd(Language.valueOf(language.toUpperCase()));
-            request.setAttribute("resources", resources);
+            ResourceBundle resources = propertiesBean.setLocale(Language.valueOf(language.toUpperCase()));
+            request.getSession().setAttribute("resources", resources);
         %>
         <jsp:setProperty name="productBean" property="language" value="${language}"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="/Shop/css/productList/productShort.css" type="text/css" rel="stylesheet">
-        <link href="/Shop/css/productList/productList.css" type="text/css" rel="stylesheet">
-        <script src="/Shop/javascript/productList/filter.js" type="text/javascript"></script>
         <title><%
             request.setAttribute("title", resources.getString("productListTitle"));
             %>
@@ -111,6 +114,9 @@
                         HashMap<String, Set<String>> canChangeFilter = filterBean.getCanChangeFilter();
                         for (Map.Entry<String, Set<String>> entry : canChangeFilter.entrySet()) {
                             request.setAttribute("filterKey", entry.getKey());
+                            if (entry.getValue() == null || entry.getValue().isEmpty()) {
+                                continue;
+                            } else {
                     %>
                     <div class="filterElement">
                         <div class="filterKey">
@@ -130,10 +136,14 @@
                         </div>
                     </div>
                     <%
+                            }
                         }
                     %>
                 </div>
+
             </div>
+
         </div>
+
     </body>
 </html>

@@ -59,6 +59,7 @@ public class FilterBean {
             }
         }
         clearCanChangeFilter();
+
     }
 
     public void setActiveFilter(Cookie[] cookies) {
@@ -117,9 +118,11 @@ public class FilterBean {
     private void clearCanChangeFilter() {
         for (Map.Entry<String, Set<String>> entry : activeFilter.entrySet()) {
             Set<String> values = canChangeFilter.get(entry.getKey());
-            Set<String> activeValues = entry.getValue();
-            for (String value : activeValues) {
-                values.remove(value);
+            if (values != null) {
+                Set<String> activeValues = entry.getValue();
+                for (String value : activeValues) {
+                    values.remove(value);
+                }
             }
         }
     }
@@ -129,10 +132,13 @@ public class FilterBean {
             return true;
         }
         HashMap<String, String> productProperties = product.getProperties();
-        for (Map.Entry<String, String> prop : productProperties.entrySet()) {
-            if (activeFilter.containsKey(prop.getKey())) {
-                Set<String> activeValues = activeFilter.get(prop.getKey());
-                if (!activeValues.contains(prop.getValue())) {
+        for (String activeProperty : activeFilter.keySet()) {
+            if (!productProperties.containsKey(activeProperty)) {
+                return false;
+            } else {
+                Set<String> get = activeFilter.get(activeProperty);
+                String get1 = productProperties.get(activeProperty);
+                if (!get.contains(get1)) {
                     return false;
                 }
             }

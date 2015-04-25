@@ -19,7 +19,7 @@
         </a>
     </div>
     <div class="elementProductName">
-        
+
         <a class="elementLink" href='${pageContext.request.contextPath}/product?id=<jsp:getProperty name="productBean" property="beanId"/>'>
             <jsp:getProperty name="productBean" property ="name"/>
         </a>
@@ -33,11 +33,11 @@
             <div class='rub'>P</div>
         </div>
         <div class="buttonsDiv">
-            <a href='buy' class='button buy'>
-                <% 
+            <a  class='button buy' onclick="buy('<jsp:getProperty name="productBean" property="beanId"/>')">
+                <%
                     String language = Language.getLanguage(request.getCookies());
                     PropertiesBean props = new PropertiesBean();
-                    ResourceBundle resources = props.asd(Language.valueOf(language.toUpperCase()));
+                    ResourceBundle resources = props.setLocale(Language.valueOf(language.toUpperCase()));
                     String buy = resources.getString("buy");
                     session.setAttribute("buy", buy);
                 %>

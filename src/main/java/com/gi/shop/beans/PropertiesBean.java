@@ -19,7 +19,51 @@ public class PropertiesBean {
 
     String currentLanguage = Language.getDefaultLanguage().getCode();
 
-    public ResourceBundle asd(Language language) {
+    public ResourceBundle setLocale(String language) {
+        currentLanguage = language;
+        try {
+            ResourceBundle resources;
+            switch (currentLanguage) {
+                case "ru":
+                    InputStreamReader fis = new InputStreamReader(new FileInputStream("myres_ru_RU.properies"), "UTF-8");
+                    try {
+                        resources = new PropertyResourceBundle(fis);
+                    } finally {
+                        fis.close();
+                    }
+                    break;
+                case "en":
+                    fis = new InputStreamReader(new FileInputStream("myres_en_US.properies"), "UTF-8");
+                    try {
+                        resources = new PropertyResourceBundle(fis);
+                    } finally {
+                        fis.close();
+                    }
+                    break;
+                case "de":
+                    fis = new InputStreamReader(new FileInputStream("myres_de.properies"), "UTF-8");
+                    try {
+                        resources = new PropertyResourceBundle(fis);
+                    } finally {
+                        fis.close();
+                    }
+                    break;
+                default:
+                    fis = new InputStreamReader(new FileInputStream("myres_ru_RU.properies"), "UTF-8");
+                    try {
+                        resources = new PropertyResourceBundle(fis);
+                    } finally {
+                        fis.close();
+                    }
+                    break;
+            }
+            return resources;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public ResourceBundle setLocale(Language language) {
         currentLanguage = language.getCode();
         try {
             ResourceBundle resources;
@@ -62,4 +106,5 @@ public class PropertiesBean {
         }
         return null;
     }
+
 }

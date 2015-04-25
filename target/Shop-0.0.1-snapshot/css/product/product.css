@@ -23,13 +23,6 @@
     border-style: solid;
 }
 
-.productMainImage:hover{
-    azimuth: center; 
-    position: relative;
-    width:  600px;
-    height: 600px;
-    cursor: zoom-in;
-}
 .productSecondaryImage {
     width:  64px;
     height: 64px;
@@ -42,21 +35,32 @@
 
 
 
-
+.productPriceAndButton{
+    height: 40px;
+}
 .productTitle{
-    margin-left: 420px;
+    width: 500px;
+    padding-left: 100px;
+    font-weight: bold;
+    font-size: 22px;
     height: 30px;
     padding-bottom: 10px;
 }
 .productPrice{
-    margin-left: 120px;
+    padding-top: 5px;
+    padding-left: 120px;
     height: 30px;
-    padding-bottom: 10px;
     float:left;
 }
+.buttonsDiv{
+    float:left;
+    padding-left: 30px;
+    height: 40px;
 
+}
 .productDescription{
-    width: 100%;
+    white-space:normal;
+    text-align: left;
     font-family: 'Helvetica neue', Helvetica, Verdana, sans-serif;
     font-size: 12px;
     font-weight: normal;
@@ -65,17 +69,13 @@
     text-align: center;
 }
 /* Стиль кнопки */
-.button{
-    margin-left: 200px;
-    padding-bottom: 20px;
-}
-
 /* Базовый контейнер табов */
 .tabs {
-    margin-left: 320px;
+    padding: 10px;
+    padding-left: 340px;
     min-width: 320px;
     max-width: 800px;
-    padding: 10px;
+    text-align: center;
 }
 /* стили секций с содержанием */
 section {
@@ -135,8 +135,13 @@ section {
         padding: 15px;
     }
 }
+.charactersiticsDiv{
+    text-align: center;
+}
 .tableCharacteristics, trCharacteristics, tdCharacteristics{
     font-size: 12px;
+    text-align: center;
+    padding-left: 200px;
 }
 .tdCharacteristics{
     width: 200px;
@@ -148,15 +153,20 @@ section {
 }
 .tdAnswerText{
     padding-top:5px;
-    width:500px;
     font-size:12px;
 }
 .tdAnswerUserInfo{
     color: #555;
     vertical-align: top;
 }
+.tableAnswer{
+    white-space:normal;
+    text-align: left;
+    padding-left: 0px;
+}
 .tdAnswer{
-    padding: 5px;
+    white-space:normal;
+    text-align: left;
     font-size:12px;
     font-style:normal;
 }

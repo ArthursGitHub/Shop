@@ -7,19 +7,21 @@ function handleFilterChange(cb, key, value) {
 }
 function filter(key, value) {
     var filter = $.cookie("filter");
+    var date = new Date();
+    date.setTime(date.getTime() + (10*1000));
     if (filter === null) {
-        $.cookie("filter", key);
+        $.cookie("filter", key, {expires:date});
     } else {
         if (filter.indexOf(key) === -1) {
-            $.cookie("filter", filter + "," + key);
+            $.cookie("filter", filter + "," + key, {expires:date});
         }
     }
     key = encodeURI(key);
     var oldValue = $.cookie(key);
     if (oldValue === null) {
-        $.cookie(key, value);
+        $.cookie(key, value,{expires:date});
     } else {
-        $.cookie(key, oldValue + "," + value);
+        $.cookie(key, oldValue + "," + value, {expires:date});
     }
     redirectFilter();
 }
@@ -54,10 +56,12 @@ function redirectFilter() {
     if (filterkeys !== null) {
         var keys = filterkeys.split(",");
         keys.forEach(function (element, index, array) {
-            urlparams += element;
             var values = $.cookie(encodeURI(element));
             if (values !== null && values.length > 0) {
-                urlparams += "=" + values + "&";
+                var valuesSplitted = values.split(",");
+                for (var i = 0; i < valuesSplitted.length; i++) {
+                    urlparams += element + "=" + valuesSplitted[i] + "&";
+                }
             }
         });
     }
@@ -67,5 +71,21 @@ function redirectFilter() {
     } else {
         var url = "http://" + window.location.host + window.location.pathname;
         window.location.href = url;
+    }
+}
+function switchLanguage(language) {
+    deleteAllCookies();
+    $.cookie("language", language);
+    var url = "http://" + window.location.host + window.location.pathname;
+    window.location.href = url;
+}
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+    	var cookie = cookies[i];
+    	var eqPos = cookie.indexOf("=");
+    	var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    	document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 }

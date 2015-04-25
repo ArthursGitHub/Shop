@@ -9,3 +9,6 @@ user = Пользователь
 comment = Комментарий
 dateOfComment = Дата отзыва
 rating = Оценка
+productListTitle = Товары
+toCart = К корзине
+enter = Вход
