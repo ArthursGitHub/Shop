@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.gi.shop.hebirnate.Buy" table="buy">
+        <id name="id" type="integer" column="id"> 
+            <generator class="native"/>
+        </id>
+        <property name="userid" column="userid" type="string"></property>
+        <property name="productid" column="productid" type="integer"></property>
+        <property name="buyDate" column="buyDate" type="timestamp"></property>
+        <property name="marketId" column="marketId" type="integer"></property>
+        <property name="deliveryAddress" column="deliveryAddress" type="string"></property>
+        <property name="isDelivery" column="isDelivery" type="boolean"></property>
+        <property name="amount" column="amount" type="integer"></property>         
+    </class>
+</hibernate-mapping>

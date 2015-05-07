@@ -33,6 +33,7 @@
                 filterBean.setCanChangeFilter(new HashMap<String, Set<String>>());
             }
             ResourceBundle resources = propertiesBean.setLocale(Language.valueOf(language.toUpperCase()));
+            HttpSession session1 = request.getSession();
             request.getSession().setAttribute("resources", resources);
         %>
         <jsp:setProperty name="productBean" property="language" value="${language}"/>
@@ -144,6 +145,8 @@
             </div>
 
         </div>
-
+        <div id="productAdded" style="display:none">
+            ${resources.productAdded}
+        </div>
     </body>
 </html>

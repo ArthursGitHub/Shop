@@ -32,6 +32,7 @@ body{
     float:left;
 }
 .loginDiv{
+    padding-top: 5px;
     color: #ddd;
     text-decoration: none;
     text-align: left;
@@ -143,4 +144,8 @@ body{
         vertical-align: middle;
         content: '';
     }
+}
+.profileLink{
+    float:right;
+    padding-right: 10px;
 }

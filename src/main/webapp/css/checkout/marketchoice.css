@@ -1,0 +1,13 @@
+.map-container{
+    height:400px;
+    width:600px;
+    padding-bottom: 50px;
+}
+.content{
+    padding-top: 50px;
+}
+#map_canvas{
+    height:400px;
+    width:600px;
+
+}

@@ -95,7 +95,7 @@ public class Product extends HttpServlet {
             product.setLanguage(currentLanguage);
             product.setBeanId(id);
             Language[] languages = Language.values();
-            String checkedTab = getInitParameter("tab");
+            String checkedTab = getServletContext().getInitParameter("tab");
             String buy = resources.getString("buy");
             String descrName = resources.getString("descrName");
             String charactersName = resources.getString("charactersName");
@@ -112,6 +112,7 @@ public class Product extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<script src=\"/Shop/javascript/productList/buy.js\" type=\"text/javascript\"></script>");
             out.println("<link href=\"/Shop/css/product/product.css\" type=\"text/css\" rel=\"stylesheet\">");
             out.println("<link href=\"/Shop/css/common/common.css\" type=\"text/css\" rel=\"stylesheet\">");
             out.println("<title>" + product.getName() + "</title>");
@@ -156,26 +157,26 @@ public class Product extends HttpServlet {
             out.println("<div class='rub'>P</div>");
             out.println("</div>");
             out.println("<div class=\"buttonsDiv\">");
-            out.println("<a href='buy' class='button buy'>");
+            out.println("<a class='button buy' onclick=\"buy('"+product.getBeanId()+"')\">");
             out.println(buy);
             out.println("</a>");
             out.println("</div>");
             out.println("</div>");
             out.print("<div class=\"tabs\">\n"
                     + "    <input id=\"tab1\" type=\"radio\" name=\"tabs\"");
-            if (checkedTab.equals("description")) {
+            if (checkedTab.equals("descrName")) {
                 out.print("checked");
             }
             out.println(">");
             out.println("<label for=\"tab1\" title=\"Вкладка 1\">" + descrName + "</label>\n");
             out.print("   <input id=\"tab2\" type=\"radio\" name=\"tabs\"");
-            if (checkedTab.equals("characteristics")) {
+            if (checkedTab.equals("charactersName")) {
                 out.print("checked");
             }
             out.println(">");
             out.println("    <label for=\"tab2\" title=\"Вкладка 2\">" + charactersName + "</label>\n");
             out.print("    <input id=\"tab3\" type=\"radio\" name=\"tabs\"");
-            if (checkedTab.equals("answers")) {
+            if (checkedTab.equals("answersName")) {
                 out.print("checked");
             }
             out.println(">");
@@ -228,6 +229,7 @@ public class Product extends HttpServlet {
             out.println("</div>");
             out.println("</div>");
             out.println("</div>");
+            out.println("<div id=\"productAdded\" style=\"display:none\">\n"+resources.getString("productAdded") +"</div>");
             out.println("</body>");
             out.println("<script src=\"/Shop/javascript/libs/jquery-1.11.2.min.js\"></script>");
             out.println("<script src=\"/Shop/javascript/libs/jquery.cookie.js\"></script>");

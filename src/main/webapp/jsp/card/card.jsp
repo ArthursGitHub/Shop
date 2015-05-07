@@ -44,7 +44,7 @@
                         <div class="quantityDiv">
                             ${sum} 
                             <div class='rub'>P</div>
-                            <a class="buy">${resources.checkout}</a>
+                            <a class="buy" href="market">${resources.marketchoice}</a>
                         </div>
                     </c:when>
                     <c:otherwise>
